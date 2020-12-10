@@ -1,7 +1,8 @@
 require 'pry'
 
 class Transfer
-  attr_accessor :sender, :receiver, :amount, :status
+  attr_accessor :status
+  attr_reader :sender, :receiver, :amount
 
 @@all = []
 
@@ -36,12 +37,12 @@ class Transfer
     def execute_transaction
       if sender.balance < amount && !sender.valid?
         @status = "rejected"
+        return "Transaction rejected. Please check your account balance."
       elsif @status != "complete" && sender.valid?
         @receiver.balance = @receiver.balance + amount
         @sender.balance = @sender.balance - amount
         @status = "complete"
       end
-      return "Transaction rejected. Please check your account balance."
     end
 
 
