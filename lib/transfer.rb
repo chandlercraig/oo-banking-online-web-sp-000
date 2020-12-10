@@ -22,7 +22,7 @@ class Transfer
   end
 
   def execute_transaction
-    # binding.pry
+    binding.pry
     if self.valid? && self.status != "complete"
       sender.withdraw(amount)
       receiver.deposit(amount)
