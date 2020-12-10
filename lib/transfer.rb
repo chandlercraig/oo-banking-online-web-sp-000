@@ -4,20 +4,13 @@ class Transfer
   attr_accessor :status
   attr_reader :sender, :receiver, :amount
 
-@@all = []
-
   def initialize(sender, receiver, amount)
     @sender = sender
     @receiver = receiver
     @amount = amount
     @status = "pending"
-    @@all << self
   end
-
-  def self.all
-    @@all
-  end
-
+  
   def valid?
     sender.valid? && receiver.valid?
   end
@@ -44,7 +37,6 @@ class Transfer
         @status = "complete"
       end
     end
-
 
   def reverse_transfer
     if valid? && @receiver.balance > amount && status == "complete"
