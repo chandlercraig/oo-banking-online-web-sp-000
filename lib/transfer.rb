@@ -37,7 +37,7 @@ class Transfer
     if valid? && @receiver.balance > amount && status == "complete"
       receiver.withdraw(amount)
       sender.deposit(amount)
-    self.status = "reversed"
+      self.status = "reversed"
     end
   end
 
